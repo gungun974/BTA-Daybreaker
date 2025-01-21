@@ -4,6 +4,7 @@
     "package": "gungun974.btadaybreaker.mixin",
     "compatibilityLevel": "JAVA_8",
     "mixins": [
+      "PlayerListMixin"
     ],
     "client": [
     ],
