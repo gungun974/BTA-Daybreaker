@@ -1,16 +1,16 @@
 {
   "schemaVersion": 1,
-  "id": "examplemod",
+  "id": "btadaybreaker",
   "version": "${version}",
 
-  "name": "Example Mod",
-  "description": "This mod aims to help new BTA modders.",
+  "name": "BTA Daybreaker",
+  "description": "A simple mod for Better Than Adventure when the server stop day cycle when nobody is connected.",
   "authors": [
-    "Turnip Labs"
+    "Gungun974"
   ],
   "contact": {
-    "homepage": "",
-    "sources": ""
+    "homepage": "https://github.com/gungun974/BTA-Daybreaker",
+    "sources": "https://github.com/gungun974/BTA-Daybreaker"
   },
 
 	"icon": "icon.png",
@@ -19,20 +19,11 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-			"turniplabs.examplemod.ExampleMod"
-    ],
-		"beforeGameStart": [
-			"turniplabs.examplemod.ExampleMod"
-		],
-		"afterGameStart": [
-			"turniplabs.examplemod.ExampleMod"
-		],
-		"recipesReady": [
-			"turniplabs.examplemod.ExampleMod"
-		]
+			"gungun974.btadaybreaker.BTADayBreaker"
+    ]
 	},
   "mixins": [
-      "examplemod.mixins.json"
+      "btadaybreaker.mixins.json"
   ],
 
   "depends": {
