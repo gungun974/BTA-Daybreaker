@@ -26,19 +26,21 @@ public abstract class MinecraftServerMixin implements BTADayBreakerMinecraftServ
 	public PlayerList playerList;
 
 	public void btadaybreaker$handlePlayerTraffic() {
-		final World world = this.getDimensionWorld(Dimension.OVERWORLD.id);
+		for (final Dimension dim : new Dimension[]{Dimension.OVERWORLD, Dimension.NETHER, Dimension.PARADISE}) {
+			final World world = this.getDimensionWorld(dim.id);
 
-		if (playerList.playerEntities.isEmpty()) {
-			BTADayBreaker.LOGGER.info("Stop day time cycle in the OVERWORLD");
+			if (playerList.playerEntities.isEmpty()) {
+				BTADayBreaker.LOGGER.info("Stop day time cycle in the {}", dim.getTranslatedName());
 
-			world.getLevelData().getGameRules().setValue(GameRules.DO_DAY_CYCLE, false);
+				world.getLevelData().getGameRules().setValue(GameRules.DO_DAY_CYCLE, false);
+				this.playerList.sendPacketToAllPlayers(new PacketGameRule(world.getLevelData().getGameRules()));
+				continue;
+			}
+			BTADayBreaker.LOGGER.info("Start day time cycle in the {}", dim.getTranslatedName());
+
+			world.getLevelData().getGameRules().setValue(GameRules.DO_DAY_CYCLE, true);
 			this.playerList.sendPacketToAllPlayers(new PacketGameRule(world.getLevelData().getGameRules()));
-			return;
 		}
-		BTADayBreaker.LOGGER.info("Start day time cycle in the OVERWORLD");
-
-		world.getLevelData().getGameRules().setValue(GameRules.DO_DAY_CYCLE, true);
-		this.playerList.sendPacketToAllPlayers(new PacketGameRule(world.getLevelData().getGameRules()));
 	}
 
 	@Inject(method = "startServer()Z", at = @At("TAIL"))
