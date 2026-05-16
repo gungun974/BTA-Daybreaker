@@ -31,7 +31,7 @@ public abstract class MinecraftServerMixin implements BTADayBreakerMinecraftServ
 	public PropertyManager propertyManager;
 
 	public void btadaybreaker$handlePlayerTraffic() {
-		for (final Dimension dim : new Dimension[]{Dimension.OVERWORLD, Dimension.NETHER, Dimension.PARADISE}) {
+		for (final Dimension dim : new Dimension[]{Dimension.OVERWORLD, Dimension.NETHER, Dimension.DRIFT}) {
 			final World world = this.getDimensionWorld(dim.id);
 
 			if (playerList.playerEntities.isEmpty()) {
@@ -57,9 +57,9 @@ public abstract class MinecraftServerMixin implements BTADayBreakerMinecraftServ
 
 		final long currentTime = overworld.getWorldTime();
 
-		for (final Dimension dim : new Dimension[]{Dimension.NETHER, Dimension.PARADISE}) {
+		for (final Dimension dim : new Dimension[]{Dimension.NETHER, Dimension.DRIFT}) {
 			if ((dim != Dimension.NETHER || this.propertyManager.getBooleanProperty("allow-nether", true))
-				&& (dim != Dimension.PARADISE || this.propertyManager.getBooleanProperty("allow-paradise", false))) {
+				&& (dim != Dimension.DRIFT || this.propertyManager.getBooleanProperty("allow-drift", false))) {
 				final World world = this.getDimensionWorld(dim.id);
 
 				world.setWorldTime(currentTime);
