@@ -14,7 +14,9 @@ base.archivesName = modName
 group = modGroup.get()
 version = modVersion.get()
 loom {
-    customMinecraftMetadata.set("https://downloads.betterthanadventure.net/bta-client/${libs.versions.btaChannel.get()}/${libs.versions.bta.get()}/manifest.json")
+    val btaChannel = libs.versions.btaChannel.get()
+    val btaVersion = (if (btaChannel == "nightly") "" else "v") + libs.versions.bta.get()
+    customMinecraftMetadata.set("https://downloads.betterthanadventure.net/bta-client/${btaChannel}/$btaVersion/manifest.json")
 }
 repositories {
     mavenCentral()
